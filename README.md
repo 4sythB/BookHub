@@ -83,18 +83,52 @@
 - when we retrieve our photo using something along the lines of **record[Model.photoDataKey]** you want to cast the result as a **CKAsset** instead of **NSData** .
 	- wrap up your guard statement and create a **constant** called **photoData** that has a value of **NSData** and is **initialized** by the **contentsofURL**. The contents of url to pass into here is your constant in the guard statement cast as the CKAsset. You'll notice that this alone won't work as it's asking for an NSURL.
 		- open documentation and look up CKAsset for a property that will return you an NSURL.
+- call **self.init** and initialize the class with all your properties  
+- Finally call **cloudKitRecordID** and set it to equal the **record** of your failable init (which is a **CKRecord**) and call the **recordID** parameter on it. We should now be done with our failable initializer.
 
+------
 - CKAssets take some additional work to convert to an image in your app since they do use NSData to create an Image
 
- 
+ - Add the following computed property below which will create a temporary directory to pass the image file path url to the CKAsset.
+
+  
+
+  private var temporaryPhotoURL: NSURL {
+          
+             let temporaryDirectory = NSTemporaryDirectory()
+            let temporaryDirectoryURL = NSURL(fileURLWithPath: temporaryDirectory)
+            let fileURL = temporaryDirectoryURL.URLByAppendingPathComponent(NSUUID().UUIDString).URLByAppendingPathExtension("jpg")
+            
+            photoData?.writeToURL(fileURL, atomically: true)
+            
+            return fileURL
+        }
+
+
+- Create an extension on CKRecord
+	- This extension will convert our model to a **CKRecord**
+	- Create a **convenience** **initializer** that takes a parameter of your **model**
+		- Note that if the compiler complains that there should be another parameter there just silence that parameter by replacing it with a underscore
+		- create a **constant** called recordID that equals an **initialized CKRecordID** that takes a **recordName**. That record name will be an initialized **NSUUID** that is converted to a **string**. 
+		- **Hint** Look up NSUUID for a parameter that converts your NSUUID to a string.
+		- call **init** on the CKRecord **itself** and initialize with a **recordType** and the **recordID**
+		- Finally since a CKRecord is essentially a glorified dictionary call **self** and then the **key** for your parameters and have them equal the **value** of the appropriate **model property** that we're going to store to CloudKit. 
+			- **Hint** There should be there properties you're storing 
 
 	
+	- Head over to your CloudKitManager and update your saveRecord func to the code below.
+	 
 
+    func saveRecord(record: CKRecord, completion: ((record: CKRecord?, error: NSError?) -> Void)?) {
+            
+            database.saveRecord(record) { (record, error) in
+                
+                completion?(record: record, error: error)
+            }
+        }
+        
+- This should get you far enough to complete Part 2 of this project. You **will** have errors in other files due to updating your Model and CloudKitManager.  Update your model controller and the rest of your code to take advantage of the upgrades you've made.  You're project on the surface should essentially work as before when you completed Part 1.
 
-
+- One last note.... since the information you're storing in CloudKit has changed you will need to go to your CloudKit Dashboard and delete your original **Record Type** and all the records saved in the **public Default Zone.**
 
 - Note that this project is completely CloudKit based/network dependent and does not use local persistence to save your data, all data will be saved to the cloud and should automatically populate your collection view upon loading your app every time.
-
-
-
-> Written with [StackEdit](https://stackedit.io/).
