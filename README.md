@@ -73,7 +73,8 @@
 		- Failable init breakdown continues after side note below
 
 - One of the major purposes of Part 2 of this project is to get us away from saving images as Bytes/NSData in CloudKit and use CKAsset instead as that is the correct type to save large files to in CloudKit.
-	- picture here
+	![screenshot 2016-08-11 09 51 20](https://cloud.githubusercontent.com/assets/6709516/17598383/6e3e4cd0-5fb7-11e6-97ee-b41d2f919d79.png)
+
 - A record can only be 1MB large so eventually if we keep on using NSData to store an image or some large file we'll run into an issue where it won't allow us to save our record due to exceeding the 1MB limit
 	- Note that NSData provides a wrapper around your CKRecord and could be used as a way to encrypt your information in CloudKit.
 
