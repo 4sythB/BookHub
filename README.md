@@ -45,7 +45,54 @@
         }
     }
 
-- Note that this project is completely CloudKit based/network dependent and does not use local persistence to save your data, all data will be save from the cloud and should automatically populate your collection view upon loading your app every time.
+**Part 2**
+
+- In **Part 1** you should have created your project using the standard methods learned in the **Bulletin Board** project. For this project we're going to update our code to be more in line with **Timeline** and get better acquainted with the code being used there.
+- Start off by creating a new folder called **Protocols** and inside of there create a Swift file called **CloudKitSyncable**. The purpose of this file should be obvious considering that it's in a folder called **Protocols** and Protocols are essentially contracts to fulfill for whoever conforms to them.
+	- For additional information on protocols and delegates read the following excellent article by Andrew Bancroft. 
+	- https://www.andrewcbancroft.com/2015/04/08/how-delegation-works-a-swift-developer-guide/
+
+- We know that for every model that we want to be able to save to CloudKit it needs to at least conform and have the following properties. Fill out CloudKitSyncable with the info below. 
+	- A **failable initializer** with a parameter of **CKRecord**
+	- A **var recordType String** that is only **get** ' able (remember this is usually the name of your model that you're going to store in CloudKit)
+	- And a **var cloudKitRecordID** of type **CKRecordID?** (Note that this is essentially a NSUUID but for CKRecords)
+
+- Still in the same file create an extension of CloudKitSyncable and implement the following computed variables. Note how broadly they're written so that they can be used on any model that conforms to this protocol.
+	- A **var isSynced of type Bool** computed property. That **returns** a **cloudKitRecordID** that is not **nil**
+	- A **var cloudKitReference of type CKReference?** computed property. That checks if a **cloudKitRecordID** exists or **returns nil**. Do this with a **guard** statement and name your **constant recordID**.
+		- Finally **return** a **CKReference initialized** with the **recordID** and pass **.None** for the action. 
+
+- We want our model to be able to conform to the **Syncable Protocol** but if your model is a **Struct** which is value based it cannot inherit the protocol. Come **Class** to the rescue which allows for **inheritance**. 
+	- Update your model to a **Class**
+	- Being a **Class** you will need to implement the required memberwise initializer.
+	- If you had a Model+CloudKit file know that we will be getting rid of it. You may want to keep it around while you build your Class for reference.
+	- Conform to **Syncable Protocol** and implement the required properties
+		- Note that when you implement your failable init from the protocol that you will need to add the **convenience** syntax + **required** before the **init?**
+		- Read the following StackOverflow question and first response for an excellent description of **convenience init's**
+		- http://stackoverflow.com/questions/30896231/why-convenience-keyword-is-even-needed-in-swift
+		- Failable init breakdown continues after side note below
+
+- One of the major purposes of Part 2 of this project is to get us away from saving images as Bytes/NSData in CloudKit and use CKAsset instead as that is the correct type to save large files to in CloudKit.
+	- picture here
+- A record can only be 1MB large so eventually if we keep on using NSData to store an image or some large file we'll run into an issue where it won't allow us to save our record due to exceeding the 1MB limit
+	- Note that NSData provides a wrapper around your CKRecord and could be used as a way to encrypt your information in CloudKit.
+
+**Back to the Failable Init**
+
+- when we retrieve our photo using something along the lines of **record[Model.photoDataKey]** you want to cast the result as a **CKAsset** instead of **NSData** .
+	- wrap up your guard statement and create a **constant** called **photoData** that has a value of **NSData** and is **initialized** by the **contentsofURL**. The contents of url to pass into here is your constant in the guard statement cast as the CKAsset. You'll notice that this alone won't work as it's asking for an NSURL.
+		- open documentation and look up CKAsset for a property that will return you an NSURL.
+
+- CKAssets take some additional work to convert to an image in your app since they do use NSData to create an Image
+
+ 
+
+	
+
+
+
+
+- Note that this project is completely CloudKit based/network dependent and does not use local persistence to save your data, all data will be saved to the cloud and should automatically populate your collection view upon loading your app every time.
 
 
 
