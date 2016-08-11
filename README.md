@@ -108,7 +108,7 @@
 - Create an extension on CKRecord
 	- This extension will convert our model to a **CKRecord**
 	- Create a **convenience** **initializer** that takes a parameter of your **model**
-		- Note that if the compiler complains that there should be another parameter there just silence that parameter by replacing it with a underscore
+		- Note that if you wish not to have the name of the parameter to show up when you call this init you can silence/ignore it with an underscore.
 		- create a **constant** called recordID that equals an **initialized CKRecordID** that takes a **recordName**. That record name will be an initialized **NSUUID** that is converted to a **string**. 
 		- **Hint** Look up NSUUID for a parameter that converts your NSUUID to a string.
 		- call **init** on the CKRecord **itself** and initialize with a **recordType** and the **recordID**
