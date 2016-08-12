@@ -82,6 +82,7 @@
                                         <connections>
                                             <outlet property="bookImageView" destination="quw-p1-6uU" id="QsZ-9Q-mlx"/>
                                             <outlet property="bookRatingLabel" destination="AXM-qC-9Lt" id="T5U-2n-0AI"/>
+                                            <segue destination="qRV-a8-f4b" kind="show" identifier="toBookDetail" id="5FE-nM-1tf"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -123,10 +124,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <stackView key="tableHeaderView" opaque="NO" contentMode="scaleToFill" axis="vertical" id="jWb-cI-6Pd">
-                            <rect key="frame" x="0.0" y="0.0" width="600" height="441"/>
+                            <rect key="frame" x="0.0" y="64" width="600" height="441"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0VD-3N-Laq">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="3d_Heart_LinkedInBG" translatesAutoresizingMaskIntoConstraints="NO" id="0VD-3N-Laq">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="397"/>
                                 </imageView>
                                 <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Xs-tw-g8w">
@@ -153,7 +154,7 @@
                         </stackView>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="commentCell" textLabel="Mch-Jt-8bP" detailTextLabel="wZa-pQ-qYf" style="IBUITableViewCellStyleSubtitle" id="CBL-7Z-XgL">
-                                <rect key="frame" x="0.0" y="469" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="533" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CBL-7Z-XgL" id="CGR-y4-k7J">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -293,7 +294,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1863" y="769"/>
+            <point key="canvasLocation" x="1869" y="769"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="fxT-W9-5e5">
@@ -332,4 +333,7 @@
             <point key="canvasLocation" x="1194" y="769"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="3d_Heart_LinkedInBG" width="1400" height="425"/>
+    </resources>
 </document>

@@ -21,6 +21,7 @@
 		BC7BD2881D5B025E00A0F172 /* PhotoSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7BD2871D5B025E00A0F172 /* PhotoSelectViewController.swift */; };
 		BC7BD28A1D5B673D00A0F172 /* AddBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7BD2891D5B673D00A0F172 /* AddBookViewController.swift */; };
 		BC7E6A491D5C30760094BEF5 /* CloudKitSyncable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7E6A481D5C30760094BEF5 /* CloudKitSyncable.swift */; };
+		BCC379851D5D7762003B3A66 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC379841D5D7762003B3A66 /* Comment.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,7 @@
 		BC7BD2871D5B025E00A0F172 /* PhotoSelectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoSelectViewController.swift; sourceTree = "<group>"; };
 		BC7BD2891D5B673D00A0F172 /* AddBookViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBookViewController.swift; sourceTree = "<group>"; };
 		BC7E6A481D5C30760094BEF5 /* CloudKitSyncable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudKitSyncable.swift; sourceTree = "<group>"; };
+		BCC379841D5D7762003B3A66 /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +113,7 @@
 			isa = PBXGroup;
 			children = (
 				BC6785671D5B963E0080C151 /* Book.swift */,
+				BCC379841D5D7762003B3A66 /* Comment.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -222,6 +225,7 @@
 				BC5BB9B91D5BCE64007D75B2 /* CloudKitManager.swift in Sources */,
 				BC7BD28A1D5B673D00A0F172 /* AddBookViewController.swift in Sources */,
 				BC7BD2841D5AFA5600A0F172 /* BookDetailTableViewController.swift in Sources */,
+				BCC379851D5D7762003B3A66 /* Comment.swift in Sources */,
 				BC7BD2881D5B025E00A0F172 /* PhotoSelectViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
