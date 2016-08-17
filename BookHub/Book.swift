@@ -24,14 +24,16 @@ class Book: CloudKitSyncable {
         guard let photoData = photoData else { return nil }
         return UIImage(data: photoData)
     }
+    var comments: [Comment]
     
     var cloudKitRecordID: CKRecordID?
     var recordType: String { return Book.recordType }
     
-    init(rating: String, timestamp: NSDate = NSDate(), photoData: NSData?) {
+    init(rating: String, timestamp: NSDate = NSDate(), photoData: NSData?, comments: [Comment] = []) {
         self.rating = rating
         self.timeStamp = timestamp
         self.photoData = photoData
+        self.comments = comments
     }
     
     convenience required init?(record: CKRecord) {

@@ -43,6 +43,7 @@ extension CKRecord {
         guard let book = comment.book else { fatalError("Comment does not have a Book relationship") }
         let bookRecordID = book.cloudKitRecordID ?? CKRecord(book).recordID
         let recordID = CKRecordID(recordName: NSUUID().UUIDString)
+        
         self.init(recordType: comment.recordType, recordID: recordID)
         
         self[Comment.dateKey] = comment.timeStamp

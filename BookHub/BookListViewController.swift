@@ -12,7 +12,6 @@ class BookListViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -41,6 +40,14 @@ class BookListViewController: UIViewController, UICollectionViewDelegate, UIColl
     // MARK: - Navigation
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-       
+        if segue.identifier == "toBookDetail" {
+            
+            guard let bookDetailVC = segue.destinationViewController as? BookDetailTableViewController,
+                indexPath = collectionView.indexPathsForSelectedItems()?.first else { return }
+            
+            let book = BookController.sharedController.books[indexPath.item]
+            
+            bookDetailVC.book = book
+        }
     }
 }
